@@ -62,9 +62,19 @@ nav{
 nav.scrolled{padding:14px 60px;}
 
 .nav-logo{
+  display:flex;align-items:center;gap:12px;
   font-family:'Cormorant Garamond',serif;
   font-size:1.6rem;font-weight:700;
   color:var(--soil);letter-spacing:0.02em;
+  text-decoration:none;
+}
+.nav-logo img{
+  height:40px;
+  width:auto;
+  transition:height 0.3s;
+}
+nav.scrolled .nav-logo img{
+  height:32px;
 }
 .nav-logo span{color:var(--moss);}
 
@@ -394,6 +404,435 @@ section{padding:100px 60px;}
 }
 .eq-btn:hover{background:var(--moss);}
 
+/* Equipment Detail Page */
+.equipment-detail{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:var(--mist);
+  z-index:1001;
+  overflow-y:auto;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(20px);
+  transition:opacity 0.4s ease, transform 0.4s ease;
+}
+
+.equipment-detail.active{
+  opacity:1;
+  pointer-events:all;
+  transform:translateY(0);
+}
+
+.detail-container{
+  max-width:1400px;
+  margin:0 auto;
+  padding:100px 60px 60px;
+}
+
+.detail-back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--textmuted);
+  font-size:0.9rem;
+  font-weight:500;
+  margin-bottom:40px;
+  cursor:none;
+  transition:color 0.2s, gap 0.2s;
+  background:none;
+  border:none;
+  font-family:'Outfit',sans-serif;
+}
+
+.detail-back:hover{
+  color:var(--moss);
+  gap:12px;
+}
+
+.detail-back svg{
+  transition:transform 0.2s;
+}
+
+.detail-back:hover svg{
+  transform:translateX(-4px);
+}
+
+.detail-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:60px;
+  margin-bottom:60px;
+}
+
+.detail-gallery{
+  position:relative;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(44,26,14,0.1);
+}
+
+.detail-main-image{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  display:block;
+}
+
+.detail-thumbnails{
+  display:flex;
+  gap:12px;
+  padding:20px;
+  background:#fff;
+  border-top:1px solid rgba(44,26,14,0.06);
+}
+
+.detail-thumb{
+  width:80px;
+  height:80px;
+  border-radius:4px;
+  object-fit:cover;
+  cursor:none;
+  border:2px solid transparent;
+  transition:border-color 0.2s, opacity 0.2s;
+  opacity:0.6;
+}
+
+.detail-thumb:hover,
+.detail-thumb.active{
+  border-color:var(--moss);
+  opacity:1;
+}
+
+.detail-info{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.detail-header{
+  padding-bottom:24px;
+  border-bottom:1px solid rgba(44,26,14,0.08);
+}
+
+.detail-badge{
+  display:inline-block;
+  padding:6px 16px;
+  border-radius:100px;
+  font-size:0.75rem;
+  font-weight:600;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+.detail-badge.available{
+  background:rgba(90,158,74,0.15);
+  color:var(--moss);
+}
+
+.detail-badge.rented{
+  background:rgba(196,98,45,0.15);
+  color:var(--rust);
+}
+
+.detail-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;
+  font-weight:700;
+  color:var(--soil);
+  margin-bottom:12px;
+  line-height:1.1;
+}
+
+.detail-location{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--textmuted);
+  font-size:0.95rem;
+}
+
+.detail-rating{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+
+.detail-rating .stars{
+  color:var(--wheat);
+  font-size:1rem;
+}
+
+.detail-rating .reviews{
+  color:var(--textmuted);
+  font-size:0.85rem;
+}
+
+.detail-price-box{
+  background:#fff;
+  padding:28px;
+  border-radius:8px;
+  box-shadow:0 8px 32px rgba(44,26,14,0.08);
+}
+
+.detail-price-header{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.detail-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;
+  font-weight:700;
+  color:var(--moss);
+}
+
+.detail-price-period{
+  font-size:1rem;
+  color:var(--textmuted);
+}
+
+.detail-price-note{
+  font-size:0.85rem;
+  color:var(--textmuted);
+  margin-bottom:24px;
+  padding-bottom:20px;
+  border-bottom:1px solid rgba(44,26,14,0.06);
+}
+
+.detail-book-btn{
+  width:100%;
+  padding:18px;
+  background:var(--moss);
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  cursor:none;
+  transition:background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow:0 4px 24px rgba(61,107,53,0.3);
+}
+
+.detail-book-btn:hover:not(:disabled){
+  background:var(--soil);
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(61,107,53,0.4);
+}
+
+.detail-book-btn:disabled{
+  background:#ccc;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+.detail-owner{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:20px;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 4px 16px rgba(44,26,14,0.06);
+}
+
+.detail-owner-avatar{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:var(--moss);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;
+  font-weight:700;
+}
+
+.detail-owner-info h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;
+  font-weight:600;
+  color:var(--soil);
+  margin-bottom:4px;
+}
+
+.detail-owner-info p{
+  font-size:0.85rem;
+  color:var(--textmuted);
+}
+
+.detail-section{
+  background:#fff;
+  padding:32px;
+  border-radius:8px;
+  box-shadow:0 4px 16px rgba(44,26,14,0.06);
+}
+
+.detail-section h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;
+  font-weight:700;
+  color:var(--soil);
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.detail-section h3::before{
+  content:'';
+  width:4px;
+  height:24px;
+  background:var(--moss);
+  border-radius:2px;
+}
+
+.detail-description{
+  font-size:1rem;
+  line-height:1.8;
+  color:var(--textmuted);
+}
+
+.detail-specs{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:20px;
+}
+
+.detail-spec{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:16px;
+  background:var(--mist);
+  border-radius:6px;
+}
+
+.detail-spec-label{
+  font-size:0.75rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--textmuted);
+  font-weight:500;
+}
+
+.detail-spec-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  font-weight:600;
+  color:var(--soil);
+}
+
+.detail-features{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.detail-feature{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:0.95rem;
+  color:var(--textmuted);
+}
+
+.detail-feature::before{
+  content:'✓';
+  width:24px;
+  height:24px;
+  background:var(--moss);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.8rem;
+  font-weight:700;
+  flex-shrink:0;
+}
+
+.detail-availability{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.detail-calendar{
+  display:grid;
+  grid-template-columns:repeat(7, 1fr);
+  gap:8px;
+}
+
+.calendar-day{
+  aspect-ratio:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.85rem;
+  border-radius:4px;
+  background:var(--mist);
+  color:var(--textmuted);
+}
+
+.calendar-day.available{
+  background:var(--moss);
+  color:#fff;
+}
+
+.calendar-day.booked{
+  background:rgba(196,98,45,0.15);
+  color:var(--rust);
+  text-decoration:line-through;
+}
+
+.detail-availability-legend{
+  display:flex;
+  gap:24px;
+  font-size:0.85rem;
+  color:var(--textmuted);
+}
+
+.detail-availability-legend span{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.legend-dot{
+  width:12px;
+  height:12px;
+  border-radius:2px;
+}
+
+.legend-dot.available{background:var(--moss);}
+.legend-dot.booked{background:rgba(196,98,45,0.15);}
+
+.detail-related{
+  margin-top:60px;
+  padding-top:60px;
+  border-top:1px solid rgba(44,26,14,0.08);
+}
+
+.detail-related h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;
+  font-weight:700;
+  color:var(--soil);
+  margin-bottom:32px;
+}
+
 /* How it works */
 .how-section{
   background:var(--soil);
@@ -645,7 +1084,7 @@ footer{
 /* Modal */
 .modal-overlay{
   position:fixed;inset:0;background:rgba(44,26,14,0.7);
-  backdrop-filter:blur(4px);z-index:1000;
+  backdrop-filter:blur(4px);z-index:2000;
   display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;transition:opacity 0.3s;
 }
@@ -686,7 +1125,7 @@ footer{
   background:var(--soil);color:var(--cream);
   padding:14px 24px;border-radius:3px;
   font-size:0.85rem;font-weight:500;
-  z-index:2000;
+  z-index:3000;
   transform:translateY(80px);opacity:0;
   transition:transform 0.3s,opacity 0.3s;
   box-shadow:0 8px 32px rgba(44,26,14,0.3);
@@ -711,6 +1150,24 @@ footer{
   .how-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .equipment-header{flex-direction:column;align-items:flex-start;gap:20px;}
+  .nav-logo img{height:32px;}
+  
+  .detail-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+  
+  .detail-main-image{
+    height:300px;
+  }
+  
+  .detail-container{
+    padding:80px 24px 40px;
+  }
+  
+  .detail-specs{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -730,25 +1187,131 @@ footer{
     <h3 id="modalTitle">Book Equipment</h3>
     <p>Fill in your details and we'll confirm your booking within 2 hours.</p>
     <div class="modal-form">
-      <input type="text" placeholder="Full Name" />
-      <input type="tel" placeholder="Phone Number" />
-      <input type="date" />
-      <select>
+      <input type="text" placeholder="Full Name" id="bookingName"/>
+      <input type="tel" placeholder="Phone Number" id="bookingPhone"/>
+      <input type="date" id="bookingDate"/>
+      <select id="bookingDuration">
         <option value="">Select Duration</option>
         <option>Half Day (4hrs)</option>
         <option>Full Day (8hrs)</option>
         <option>Weekly (7 days)</option>
         <option>Monthly</option>
       </select>
-      <input type="text" placeholder="Farm Location / County" />
+      <input type="text" placeholder="Farm Location / County" id="bookingLocation"/>
       <button class="btn-primary" onclick="submitBooking()">Confirm Booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- Equipment Detail Page -->
+<div class="equipment-detail" id="equipmentDetail">
+  <div class="detail-container">
+    <button class="detail-back" onclick="closeEquipmentDetail()">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M15 10H5M5 10L10 5M5 10L10 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Equipment
+    </button>
+    
+    <div class="detail-grid">
+      <div class="detail-gallery">
+        <img src="" alt="" class="detail-main-image" id="detailMainImage"/>
+        <div class="detail-thumbnails" id="detailThumbnails">
+          <!-- Thumbnails will be populated by JS -->
+        </div>
+      </div>
+      
+      <div class="detail-info">
+        <div class="detail-header">
+          <span class="detail-badge" id="detailBadge">Available</span>
+          <h1 class="detail-title" id="detailTitle">Equipment Name</h1>
+          <div class="detail-location" id="detailLocation">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Location</span>
+          </div>
+          <div class="detail-rating">
+            <span class="stars" id="detailStars">★★★★★</span>
+            <span class="reviews" id="detailReviews">(0 reviews)</span>
+          </div>
+        </div>
+        
+        <div class="detail-price-box">
+          <div class="detail-price-header">
+            <span class="detail-price" id="detailPrice">KES 0</span>
+            <span class="detail-price-period">/day</span>
+          </div>
+          <p class="detail-price-note">Price includes operator and fuel. Insurance included.</p>
+          <button class="detail-book-btn" id="detailBookBtn" onclick="openBookingModal()">Book Now</button>
+        </div>
+        
+        <div class="detail-owner">
+          <div class="detail-owner-avatar" id="detailOwnerAvatar">OW</div>
+          <div class="detail-owner-info">
+            <h4 id="detailOwnerName">Owner Name</h4>
+            <p>Verified Equipment Owner · Response time: 2 hours</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="detail-grid" style="grid-template-columns:2fr 1fr;">
+      <div>
+        <div class="detail-section" style="margin-bottom:24px;">
+          <h3>Description</h3>
+          <p class="detail-description" id="detailDescription">
+            Equipment description will appear here.
+          </p>
+        </div>
+        
+        <div class="detail-section" style="margin-bottom:24px;">
+          <h3>Specifications</h3>
+          <div class="detail-specs" id="detailSpecs">
+            <!-- Specs populated by JS -->
+          </div>
+        </div>
+        
+        <div class="detail-section">
+          <h3>Features & Included</h3>
+          <div class="detail-features" id="detailFeatures">
+            <!-- Features populated by JS -->
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <div class="detail-section">
+          <h3>Availability Calendar</h3>
+          <div class="detail-availability">
+            <div class="detail-calendar" id="detailCalendar">
+              <!-- Calendar populated by JS -->
+            </div>
+            <div class="detail-availability-legend">
+              <span><span class="legend-dot available"></span> Available</span>
+              <span><span class="legend-dot booked"></span> Booked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="detail-related" id="detailRelated" style="display:none;">
+      <h3>Similar Equipment</h3>
+      <div class="equipment-grid" id="relatedGrid" style="margin-top:0;">
+        <!-- Related equipment populated by JS -->
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Nav -->
 <nav id="navbar">
-  <div class="nav-logo">Corn<span>clave</span></div>
+  <a href="#" class="nav-logo">
+    <img src="/mnt/kimi/upload/74116.jpg" alt="Cornclave Logo"/>
+    <span>Corn</span>clave
+  </a>
   <ul class="nav-links">
     <li><a href="#equipment">Equipment</a></li>
     <li><a href="#how">How It Works</a></li>
@@ -839,7 +1402,7 @@ footer{
 
   <div class="equipment-grid" id="eqGrid">
 
-    <div class="eq-card reveal" data-type="tractor">
+    <div class="eq-card reveal" data-type="tractor" onclick="openEquipmentDetail(0)">
       <div class="eq-img">
       <head>
         <div class="eq-badge badge-available">Available</div>
@@ -865,12 +1428,12 @@ footer{
         <p class="eq-desc">75HP utility tractor ideal for medium-scale farms. Includes front loader and 3-point hitch.</p>
         <div class="eq-footer">
           <div class="eq-price"><span class="amount">KES 4,500</span><span class="period">/day</span></div>
-          <button class="eq-btn" onclick="openModal('John Deere 5075E')">Book Now</button>
+          <button class="eq-btn" onclick="event.stopPropagation(); openModal('John Deere 5075E')">Book Now</button>
         </div>
       </div>
     </div>
 
-    <div class="eq-card reveal" data-type="harvest">
+    <div class="eq-card reveal" data-type="harvest" onclick="openEquipmentDetail(1)">
       <div class="eq-img" style="background:#e8f0d4;">
         
         <div class="eq-badge badge-eavailable">Available</div>
@@ -884,12 +1447,12 @@ footer{
         <p class="eq-desc">High-capacity combine harvester for wheat, maize, and barley. Includes GPS guidance.</p>
         <div class="eq-footer">
           <div class="eq-price"><span class="amount">KES 12,000</span><span class="period">/day</span></div>
-          <button class="eq-btn" onclick="openModal('New Holland TC5.90')">Book Now</button>
+          <button class="eq-btn" onclick="event.stopPropagation(); openModal('New Holland TC5.90')">Book Now</button>
         </div>
       </div>
     </div>
 
-    <div class="eq-card reveal" data-type="tractor">
+    <div class="eq-card reveal" data-type="tractor" onclick="openEquipmentDetail(2)">
       <div class="eq-img" style="background:#f0e8d4;">
        
         <div class="eq-badge badge-rented">Rented</div>
@@ -910,7 +1473,7 @@ footer{
       </div>
     </div>
 
-    <div class="eq-card reveal" data-type="irrigation">
+    <div class="eq-card reveal" data-type="irrigation" onclick="openEquipmentDetail(3)">
       <div class="eq-img" style="background:#d4e8f0;">
        <div class="eq-badge badge-available">Available</div>
       </div>
@@ -924,12 +1487,12 @@ footer{
         <p class="eq-desc">400m center pivot irrigation system. Covers up to 50 acres. Automated timer controls.</p>
         <div class="eq-footer">
           <div class="eq-price"><span class="amount">KES 8,200</span><span class="period">/day</span></div>
-          <button class="eq-btn" onclick="openModal('Valley Center Pivot')">Book Now</button>
+          <button class="eq-btn" onclick="event.stopPropagation(); openModal('Valley Center Pivot')">Book Now</button>
         </div>
       </div>
     </div>
 
-    <div class="eq-card reveal" data-type="harvest">
+    <div class="eq-card reveal" data-type="harvest" onclick="openEquipmentDetail(4)">
       <div class="eq-img" style="background:#ead4f0;">
        
         <div class="eq-badge badge-available">Available</div>
@@ -946,12 +1509,12 @@ footer{
         <p class="eq-desc">Compact harvester for rice, wheat, and small grains. Great for small-medium farms.</p>
         <div class="eq-footer">
           <div class="eq-price"><span class="amount">KES 9,500</span><span class="period">/day</span></div>
-          <button class="eq-btn" onclick="openModal('CLAAS Crop Tiger 30')">Book Now</button>
+          <button class="eq-btn" onclick="event.stopPropagation(); openModal('CLAAS Crop Tiger 30')">Book Now</button>
         </div>
       </div>
     </div>
 
-    <div class="eq-card reveal" data-type="tractor">
+    <div class="eq-card reveal" data-type="tractor" onclick="openEquipmentDetail(5)">
       <div class="eq-img" style="background:#d4f0e4;">
         <div class="eq-badge badge-available">Available</div>
       </div>
@@ -971,7 +1534,7 @@ footer{
         <p class="eq-desc">70HP Japanese tractor with precision controls. Fuel-efficient with low ground pressure.</p>
         <div class="eq-footer">
           <div class="eq-price"><span class="amount">KES 4,200</span><span class="period">/day</span></div>
-          <button class="eq-btn" onclick="openModal('Kubota M7060')">Book Now</button>
+          <button class="eq-btn" onclick="event.stopPropagation(); openModal('Kubota M7060')">Book Now</button>
         </div>
       </div>
     </div>
@@ -1236,6 +1799,208 @@ footer{
 </footer>
 
 <script>
+// Equipment Data
+const equipmentData = [
+  {
+    id: 0,
+    name: "John Deere 5075E",
+    type: "tractor",
+    location: "Rift Valley",
+    rating: 4.9,
+    reviews: 48,
+    price: 4500,
+    status: "available",
+    image: "john deere 5075e.jpg",
+    owner: "James Kamau",
+    ownerInitials: "JK",
+    description: "The John Deere 5075E is a powerful 75HP utility tractor designed for medium-scale farming operations. This reliable machine comes equipped with a front loader and 3-point hitch, making it perfect for a wide range of agricultural tasks including ploughing, tilling, planting, and material handling. The tractor features a comfortable operator station, excellent fuel efficiency, and the legendary John Deere reliability that farmers trust worldwide.",
+    specs: {
+      "Horsepower": "75 HP",
+      "Engine": "John Deere 4045",
+      "Transmission": "12F/12R PowrReverser",
+      "Lift Capacity": "2,500 kg",
+      "Fuel Tank": "120 liters",
+      "Year": "2022"
+    },
+    features: [
+      "Front loader included",
+      "3-point hitch system",
+      "Air-conditioned cabin",
+      "GPS ready",
+      "Low hours (1,200)",
+      "Fully serviced",
+      "Insurance included",
+      "Operator available"
+    ],
+    calendar: [1,1,1,0,1,1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,1]
+  },
+  {
+    id: 1,
+    name: "New Holland TC5.90",
+    type: "harvest",
+    location: "Central Kenya",
+    rating: 4.8,
+    reviews: 32,
+    price: 12000,
+    status: "available",
+    image: "new holland tc5.90.jpg",
+    owner: "Peter Njoroge",
+    ownerInitials: "PN",
+    description: "The New Holland TC5.90 is a high-capacity combine harvester engineered for efficient harvesting of wheat, maize, and barley. This machine features advanced GPS guidance technology for precision farming, reducing overlap and maximizing field coverage. With its large grain tank and powerful engine, it's capable of handling extensive harvesting operations with minimal downtime.",
+    specs: {
+      "Engine Power": "295 HP",
+      "Grain Tank": "9,000 liters",
+      "Cutting Width": "7.6 meters",
+      "Threshing System": "Twin rotor",
+      "GPS": "IntelliSteer ready",
+      "Year": "2021"
+    },
+    features: [
+      "GPS guidance included",
+      "Auto-leveling system",
+      "Climate-controlled cabin",
+      "Night lights for 24hr operation",
+      "Mobile grain unloading",
+      "Low grain loss rate",
+      "Experienced operator included",
+      "Fuel included"
+    ],
+    calendar: [1,0,1,1,1,1,0,0,1,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0]
+  },
+  {
+    id: 2,
+    name: "Massey Ferguson 375",
+    type: "tractor",
+    location: "Western Kenya",
+    rating: 4.7,
+    reviews: 61,
+    price: 3800,
+    status: "rented",
+    image: "massey ferguson 375.jpg",
+    owner: "Grace Omondi",
+    ownerInitials: "GO",
+    description: "The Massey Ferguson 375 is a proven 75HP workhorse that has earned the trust of farmers across Kenya. Known for its durability and ease of maintenance, this tractor excels in ploughing, planting, and general fieldwork. Its simple mechanical design means repairs can be done locally, minimizing downtime during critical farming seasons.",
+    specs: {
+      "Horsepower": "75 HP",
+      "Engine": "Perkins 4.41",
+      "Transmission": "8F/2R",
+      "PTO Power": "65 HP",
+      "Hydraulics": "2,100 psi",
+      "Year": "2019"
+    },
+    features: [
+      "Robust build quality",
+      "Easy to maintain",
+      "Spare parts readily available",
+      "Compatible with all implements",
+      "Fuel efficient",
+      "Canopy included",
+      "Tool kit provided"
+    ],
+    calendar: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+  },
+  {
+    id: 3,
+    name: "Valley Center Pivot",
+    type: "irrigation",
+    location: "Eastern Kenya",
+    rating: 5.0,
+    reviews: 14,
+    price: 8200,
+    status: "available",
+    image: "valley centre pivots.jpg",
+    owner: "Ahmed Hassan",
+    ownerInitials: "AH",
+    description: "This 400-meter Valley Center Pivot irrigation system is the solution for efficient large-scale irrigation. Covering up to 50 acres in a single rotation, it features automated timer controls that allow you to schedule irrigation cycles for optimal water usage. Perfect for maize, wheat, and horticultural crops in arid and semi-arid regions.",
+    specs: {
+      "Length": "400 meters",
+      "Coverage": "50 acres",
+      "Flow Rate": "200 m³/hour",
+      "Span": "12 towers",
+      "Control": "Auto/timer based",
+      "Power": "Diesel/Electric"
+    },
+    features: [
+      "Automated timer controls",
+      "Variable rate irrigation",
+      "GPS corner control",
+      "Remote monitoring",
+      "Installation included",
+      "Technical support",
+      "Water pump included",
+      "Training provided"
+    ],
+    calendar: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+  },
+  {
+    id: 4,
+    name: "CLAAS Crop Tiger 30",
+    type: "harvest",
+    location: "Nakuru",
+    rating: 4.6,
+    reviews: 27,
+    price: 9500,
+    status: "available",
+    image: "claas crop tiger 30.jpg",
+    owner: "Sarah Kimani",
+    ownerInitials: "SK",
+    description: "The CLAAS Crop Tiger 30 is a compact yet powerful harvester designed specifically for rice, wheat, and small grains. Its smaller footprint makes it ideal for small to medium-sized farms and fields with limited access. Despite its compact size, it delivers professional-grade harvesting performance with minimal grain loss.",
+    specs: {
+      "Engine": "Mercedes-Benz 6-cylinder",
+      "Power": "220 HP",
+      "Grain Tank": "6,000 liters",
+      "Cutting Width": "5.4 meters",
+      "Weight": "12,000 kg",
+      "Year": "2020"
+    },
+    features: [
+      "Compact design for small fields",
+      "Low ground pressure",
+      "Excellent for rice harvesting",
+      "Reduced crop loss technology",
+      "Easy transport",
+      "Quick setup",
+      "Operator included"
+    ],
+    calendar: [1,1,0,1,1,1,0,1,1,1,0,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1]
+  },
+  {
+    id: 5,
+    name: "Kubota M7060",
+    type: "tractor",
+    location: "Coast Region",
+    rating: 4.8,
+    reviews: 39,
+    price: 4200,
+    status: "available",
+    image: "kubota m7060.jpg",
+    owner: "Ali Mwinyi",
+    ownerInitials: "AM",
+    description: "The Kubota M7060 is a premium 70HP Japanese tractor featuring precision controls and exceptional fuel efficiency. Its low ground pressure design makes it perfect for coastal region soils, minimizing soil compaction while delivering powerful performance. The ergonomic operator station ensures comfort during long working hours.",
+    specs: {
+      "Horsepower": "70 HP",
+      "Engine": "Kubota V3307",
+      "Transmission": "12F/12R",
+      "Hydraulics": "3,300 psi",
+      "Fuel Tank": "90 liters",
+      "Year": "2023"
+    },
+    features: [
+      "Japanese precision engineering",
+      "Low ground pressure tires",
+      "Excellent fuel economy",
+      "Power steering",
+      "4WD standard",
+      "ROPS certified",
+      "Warranty remaining",
+      "Service records available"
+    ],
+    calendar: [1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1]
+  }
+];
+
+let currentEquipment = null;
+
 // Cursor
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursorRing');
@@ -1296,29 +2061,160 @@ function filterEq(btn,type){
   });
 }
 
+// Equipment Detail Functions
+function openEquipmentDetail(index) {
+  currentEquipment = equipmentData[index];
+  const detail = document.getElementById('equipmentDetail');
+  
+  // Populate data
+  document.getElementById('detailTitle').textContent = currentEquipment.name;
+  document.getElementById('detailMainImage').src = currentEquipment.image;
+  document.getElementById('detailMainImage').alt = currentEquipment.name;
+  document.getElementById('detailLocation').innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+      <circle cx="12" cy="10" r="3"/>
+    </svg>
+    <span>${currentEquipment.location}</span>
+  `;
+  
+  // Badge
+  const badge = document.getElementById('detailBadge');
+  badge.textContent = currentEquipment.status === 'available' ? 'Available' : 'Currently Rented';
+  badge.className = `detail-badge ${currentEquipment.status}`;
+  
+  // Rating
+  const stars = '★'.repeat(Math.floor(currentEquipment.rating)) + (currentEquipment.rating % 1 >= 0.5 ? '½' : '');
+  document.getElementById('detailStars').textContent = stars;
+  document.getElementById('detailReviews').textContent = `(${currentEquipment.reviews} reviews)`;
+  
+  // Price
+  document.getElementById('detailPrice').textContent = `KES ${currentEquipment.price.toLocaleString()}`;
+  
+  // Book button
+  const bookBtn = document.getElementById('detailBookBtn');
+  if (currentEquipment.status === 'available') {
+    bookBtn.disabled = false;
+    bookBtn.textContent = 'Book Now';
+  } else {
+    bookBtn.disabled = true;
+    bookBtn.textContent = 'Currently Unavailable';
+  }
+  
+  // Owner
+  document.getElementById('detailOwnerName').textContent = currentEquipment.owner;
+  document.getElementById('detailOwnerAvatar').textContent = currentEquipment.ownerInitials;
+  
+  // Description
+  document.getElementById('detailDescription').textContent = currentEquipment.description;
+  
+  // Specs
+  const specsContainer = document.getElementById('detailSpecs');
+  specsContainer.innerHTML = '';
+  for (const [key, value] of Object.entries(currentEquipment.specs)) {
+    specsContainer.innerHTML += `
+      <div class="detail-spec">
+        <span class="detail-spec-label">${key}</span>
+        <span class="detail-spec-value">${value}</span>
+      </div>
+    `;
+  }
+  
+  // Features
+  const featuresContainer = document.getElementById('detailFeatures');
+  featuresContainer.innerHTML = '';
+  currentEquipment.features.forEach(feature => {
+    featuresContainer.innerHTML += `<div class="detail-feature">${feature}</div>`;
+  });
+  
+  // Calendar
+  const calendar = document.getElementById('detailCalendar');
+  calendar.innerHTML = '';
+  const days = ['S','M','T','W','T','F','S'];
+  days.forEach(day => {
+    calendar.innerHTML += `<div class="calendar-day" style="background:transparent; font-weight:600;">${day}</div>`;
+  });
+  currentEquipment.calendar.forEach(available => {
+    calendar.innerHTML += `<div class="calendar-day ${available ? 'available' : 'booked'}"></div>`;
+  });
+  
+  // Thumbnails
+  const thumbsContainer = document.getElementById('detailThumbnails');
+  thumbsContainer.innerHTML = '';
+  [currentEquipment.image, currentEquipment.image, currentEquipment.image, currentEquipment.image].forEach((img, idx) => {
+    thumbsContainer.innerHTML += `
+      <img src="${img}" class="detail-thumb ${idx === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)"/>
+    `;
+  });
+  
+  // Show detail page
+  detail.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Scroll to top
+  detail.scrollTop = 0;
+}
+
+function closeEquipmentDetail() {
+  const detail = document.getElementById('equipmentDetail');
+  detail.classList.remove('active');
+  document.body.style.overflow = '';
+  currentEquipment = null;
+}
+
+function changeMainImage(src, thumb) {
+  document.getElementById('detailMainImage').src = src;
+  document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function openBookingModal() {
+  if (currentEquipment) {
+    openModal(currentEquipment.name);
+  }
+}
+
 // Modal
 function openModal(name){
   document.getElementById('modalTitle').textContent = 'Book: '+name;
   document.getElementById('modal').classList.add('open');
 }
+
 function closeModal(){
   document.getElementById('modal').classList.remove('open');
 }
+
 document.getElementById('modal').addEventListener('click',function(e){
   if(e.target===this)closeModal();
 });
 
 function submitBooking(){
+  const name = document.getElementById('bookingName').value;
+  const phone = document.getElementById('bookingPhone').value;
+  const date = document.getElementById('bookingDate').value;
+  const duration = document.getElementById('bookingDuration').value;
+  const location = document.getElementById('bookingLocation').value;
+  
+  if (!name || !phone || !date || !duration || !location) {
+    showToast('Please fill in all fields');
+    return;
+  }
+  
   closeModal();
   showToast('Booking confirmed! We\'ll call you shortly.');
+  
+  // Clear form
+  document.getElementById('bookingName').value = '';
+  document.getElementById('bookingPhone').value = '';
+  document.getElementById('bookingDate').value = '';
+  document.getElementById('bookingDuration').value = '';
+  document.getElementById('bookingLocation').value = '';
 }
 
 // Toast
 function showToast(msg){
   const t = document.getElementById('toast');
-  t.textContent=''; // clear
-  // rebuild with ::before still showing via CSS
-  t.style.setProperty('--msg',`'${msg}'`);
+  t.textContent='';
   t.innerHTML = msg;
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),3500);
